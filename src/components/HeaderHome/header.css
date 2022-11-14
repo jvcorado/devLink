@@ -1,0 +1,26 @@
+.header{
+    align-self: flex-end;
+    margin-right: 20px;
+
+}
+
+.nav-header{
+    width: 100%;
+    background-color: white;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+}
+
+
+
+.nav-header a{
+    margin-left: 14px;
+    color: #21242d;
+    transition: color 0.3s;
+}
+
+.nav-header a:hover{
+    color: #eda617;
+}

@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  font-family: sans-serif;
+  background: linear-gradient(#232630, #050507);
+  min-height: 100vh;
+}
+
+button{
+  cursor: pointer;
+}
+
+.btn{
+  padding: 15px;
+  margin-bottom: 18px;
+  width: 100%;
+  border-radius: 4px;
+  background-color:#3366FF;
+  border: none;
+  color: white;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+a{
+  text-decoration: none;
+}
