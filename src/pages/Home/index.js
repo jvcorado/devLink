@@ -1,7 +1,7 @@
 import './home.css'
 
 import { Social } from '../../components/Social'
-import { FaLinkedin, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
+import { FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
 import { Logo } from '../../components/Logo';
 
@@ -18,7 +18,7 @@ import {
 
 } from 'firebase/firestore';
 
-export const Home = ()=>{
+export const Home = () => {
 
     const [links, setLinks] = useState([])
     const [socialLinks, setSocialLinks] = useState({});
@@ -27,108 +27,108 @@ export const Home = ()=>{
 
     const navigate = useNavigate();
 
-    function telaMensagem(){
-        navigate("/mensagem", {replace:true})
+    function telaMensagem() {
+        navigate("/mensagem", { replace: true })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        function loadLinks(){
-            const linksRef = collection(db , 'links')
+        function loadLinks() {
+            const linksRef = collection(db, 'links')
             const queryRef = query(linksRef, orderBy('created', 'asc'))
 
             getDocs(queryRef)
-            .then( (snapshot)=>{
-                let lista = [];
+                .then((snapshot) => {
+                    let lista = [];
 
-                snapshot.forEach((doc)=>{
-                    lista.push(
-                        {
-                            id:doc.id,
-                            nome: doc.data().nome,
-                            url:doc.data().url,
-                            bg:doc.data().bg,
-                            color:doc.data().color
-                        }
-                    )
+                    snapshot.forEach((doc) => {
+                        lista.push(
+                            {
+                                id: doc.id,
+                                nome: doc.data().nome,
+                                url: doc.data().url,
+                                bg: doc.data().bg,
+                                color: doc.data().color
+                            }
+                        )
+                    })
+
+                    setLinks(lista)
                 })
-
-                setLinks(lista)
-            })
 
         }
 
         loadLinks();
 
-    },[])
+    }, [])
 
-    useEffect(()=>{
- 
-        function loadRedes(){
+    useEffect(() => {
+
+        function loadRedes() {
             const docRef = doc(db, 'redes', 'link')
             getDoc(docRef)
-            .then((snapshot)=>{
+                .then((snapshot) => {
 
-                if(snapshot.data() !== undefined){
-                    setSocialLinks({
-                        linkedin:snapshot.data().linkedin,
-                        instagram:snapshot.data().instagram,
-                        youtube:snapshot.data().youtube
-                    })
-                  
-                }
-              
-            })
+                    if (snapshot.data() !== undefined) {
+                        setSocialLinks({
+                            linkedin: snapshot.data().linkedin,
+                            instagram: snapshot.data().instagram,
+                            youtube: snapshot.data().youtube
+                        })
+
+                    }
+
+                })
         }
 
         loadRedes();
 
 
-    },[])
+    }, [])
 
 
 
-    return(
+    return (
         <div className='container-home'>
-            <Logo/>
-            <h1 className='name-text'>João Victor Corado</h1>
-            <h4>Developer Web - Computer Science Student</h4>
+            <Logo />
+            <h1 className='name-text'>Jota o Programador</h1>
+            <h4>Criando o amanhã, hoje!</h4>
 
             <main className='links'>
 
                 {links.map((item) => (
-                        <section 
-                            key={item.id}
-                            className="link-area"
-                            style={{ 
-                                backgroundColor: item.bg, color: item.color
-                            }}>
-                                <a href={item.url}>
-                                    <p style={{color: item.color}}>{item.nome}</p>
-                                </a>
-                              
-                        </section>
-                    ))}
+                    <section
+                        key={item.id}
+                        className="link-area"
+                        style={{
+                            backgroundColor: item.bg, color: item.color
+                        }}>
+                        <a href={item.url}>
+                            <p style={{ color: item.color }}>{item.nome}</p>
+                        </a>
 
-                    <button onClick={telaMensagem} className="btn">Enviar mensagem</button>
+                    </section>
+                ))}
 
-                    {links.length !== 0 && Object.keys(socialLinks).length > 0 && (
-                        <footer>
-                                <Social url={socialLinks?.linkedin}>
-                                    <FaLinkedin size={35} color="#FFF"/>
-                                </Social>
-            
-                                <Social url={socialLinks?.instagram}>
-                                    <FaInstagram size={35} color="#FFF"/>
-                                </Social>
-            
-                                <Social url={socialLinks?.youtube}>
-                                    <FaYoutube size={35} color="#FFF"/>
-                                </Social>
+                <button onClick={telaMensagem} className="btn">Enviar mensagem</button>
+
+                {links.length !== 0 && Object.keys(socialLinks).length > 0 && (
+                    <footer>
+                        <Social url={socialLinks?.linkedin}>
+                            <FaLinkedin size={35} color="#FFF" />
+                        </Social>
+
+                        <Social url={socialLinks?.instagram}>
+                            <FaInstagram size={35} color="#FFF" />
+                        </Social>
+
+                        <Social url={socialLinks?.youtube}>
+                            <FaYoutube size={35} color="#FFF" />
+                        </Social>
                     </footer>
-    
-                    )}
-                        
+
+                )}
+
             </main>
         </div>
     )
