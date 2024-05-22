@@ -4,16 +4,16 @@ import { Input } from '../../components/Input';
 import { HeaderHome } from '../../components/HeaderHome';
 import emailjs from '@emailjs/browser'
 
-export const Mensagem = ()=>{
+export const Mensagem = () => {
 
   const [nomeInput, setNomeInput] = useState('');
   const [msgInput, setMsgInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
 
-  function handleEnvio(e){
+  function handleEnvio(e) {
     e.preventDefault()
-    
-    if(nomeInput === "" || emailInput === "" || msgInput === ""){
+
+    if (nomeInput === "" || emailInput === "" || msgInput === "") {
       alert('Preencha os campos')
       return
     }
@@ -22,28 +22,28 @@ export const Mensagem = ()=>{
       message: msgInput,
       email: emailInput
     }
-    emailjs.send('service_z3f5lx3','template_6unam49',templateParams,'6gMuhq6cYpRE3Ry_F')
-    .then((response)=>{
-      console.log("Email Enviado",response.status.text)
-      setNomeInput('')
-      setEmailInput('')
-      setMsgInput('')
-    },(error)=>{
-      console.log('Error ' + error)
-    })
+    emailjs.send('service_z3f5lx3', 'template_6unam49', templateParams, '6gMuhq6cYpRE3Ry_F')
+      .then((response) => {
+        console.log("Email Enviado", response.status.text)
+        setNomeInput('')
+        setEmailInput('')
+        setMsgInput('')
+      }, (error) => {
+        console.log('Error ' + error)
+      })
   }
 
-  return(
-  
-    <div className='container'>
+  return (
+
+    <div className='container mx-auto !px-5'>
       <form className='form' onSubmit={handleEnvio}>
-        <h1 className='text'>Enviar Mensagem</h1>
+        <h1 className='text-4xl overflow-y-hidden py-5'>Enviar Mensagem</h1>
         <Input
           type="nome"
           placeholder="Digite seu Nome"
           name="nome"
           value={nomeInput}
-          onChange={(e)=>setNomeInput(e.target.value)}
+          onChange={(e) => setNomeInput(e.target.value)}
         />
 
         <Input
@@ -51,17 +51,18 @@ export const Mensagem = ()=>{
           placeholder="Digite seu Email"
           name="email"
           value={emailInput}
-          onChange={(e)=>setEmailInput(e.target.value)}
+          onChange={(e) => setEmailInput(e.target.value)}
         />
 
-        <textarea 
-          name="mensagem" 
-          id="mensagem" 
-          cols="30" 
+        <textarea
+          name="mensagem"
+          id="mensagem"
+          className='text-zinc-700 placeholder:text-zinc-700 text-base px-5'
+          cols="30"
           rows="10"
           placeholder='Digite sua Mensagem'
           value={msgInput}
-          onChange={(e)=>setMsgInput(e.target.value)}>
+          onChange={(e) => setMsgInput(e.target.value)}>
         </textarea>
 
         <button type='submit' className='btn'>Enviar</button>

@@ -35,7 +35,7 @@ export const Home = () => {
             return null; // Retorna null se o componente não for encontrado
         }
 
-        return <TagComponent size={24} />;
+        return <TagComponent size={30} />;
     };
 
 
@@ -103,7 +103,7 @@ export const Home = () => {
 
 
     return (
-        <div className='container mx-auto flex flex-col   md:h-screen gap-5 md:max-w-[450px] !px-5'>
+        <div className='container mx-auto flex flex-col py-10 md:h-screen gap-5 md:max-w-[450px] !px-5'>
             <div className='w-full  flex flex-col gap-5'>
                 <div className='flex items-center p-3 rounded-xl  gap-5 bg-[#1D1D1D] w-full'>
                     <Logo />
