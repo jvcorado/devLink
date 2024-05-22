@@ -1,10 +1,10 @@
-import './styles.css'
 
-export const Input = (props)=>{
-    return(
-       <input
-        className='form-input'
-        {...props}
-       /> 
+
+export const Input = (props) => {
+    return (
+        <input
+            className='!w-full p-5 rounded-lg border outline-none'
+            {...props}
+        />
     )
 }

@@ -1,33 +1,37 @@
-*{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-body{
+body {
   font-family: sans-serif;
-  background: linear-gradient(#232630, #050507);
+  background: #111111;
   min-height: 100vh;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
-.btn{
+.btn {
   padding: 15px;
   margin-bottom: 18px;
   width: 100%;
   border-radius: 4px;
-  background-color:#3366FF;
+  background-color: #3366ff;
   border: none;
   color: white;
   font-size: 18px;
   line-height: 27px;
 }
 
-a{
+a {
   text-decoration: none;
 }
